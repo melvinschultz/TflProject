@@ -14,9 +14,6 @@ arrivalTime.onload = function() {
 		tObj = JSON.parse(arrivalTime.responseText);
 		console.log(tObj);
 		document.getElementById('board').innerHTML = tObj.timeToStation;
-		
-
-
 	} //end if
 }; //end function
 
