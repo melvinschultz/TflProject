@@ -1,8 +1,8 @@
 // function getTimes
-function getTimes(codeStation) {
+function getTimes() {
   $.ajax({
     type: 'GET',
-    url: 'https://api.tfl.gov.uk/StopPoint/' + codeStation + '/Arrivals?app_key=%20a73f7a36fab42a930bf7cf8b1616d995&app_id=be29441e',
+    url: 'https://api.tfl.gov.uk/StopPoint/940GZZLUNFD/Arrivals?app_key=%20a73f7a36fab42a930bf7cf8b1616d995&app_id=be29441e',
     dataType: 'Json',
     success: function (data) {
       $("#board").html("");
