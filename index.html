@@ -68,12 +68,12 @@
         <!-- PAGE WRAPPER -->
         <div id="page-wrapper" >
             <!-- PAGE INNER -->
-            <div id="page-inner" style="background-image: url(assets/img/tube.jpg); border: 5px solid black">
+            <div id="page-inner" style="background-image: url(assets/img/tube.jpg); border: 5px solid black;">
                 <!-- ROW -->
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Live Tube Times</h2>   
-                     <h5>Please find your station. </h5>
+                        <h2>Live Tube Times</h2>
+                        <h5>Please find your station. </h5>
                     </div>
                 </div>              
                 <!-- /. ROW  -->
@@ -82,8 +82,8 @@
 
                 <!-- ROW -->
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-6 col-lg-offset-3 col-lg-7">
-                        <table id="board" width="350%">
+                    <div class="col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10">
+                        <table id="board" class="col-lg-12 col-md-12">
                             <tr>
                                 <td>Predictions loading...</td>
                                 <td>Due</td>
@@ -183,86 +183,5 @@
     <script src="assets/js/custom.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="assets/js/myJs.js"></script>
-
-    <script type="text/javascript">
-      tday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-      tmonth = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-      function getClock() {
-        var d = new Date();
-        var nday = d.getDay();
-        var nmonth = d.getMonth();
-        var ndate = d.getDate();
-        var nyear = d.getYear();
-        var nhour = d.getHours();
-        var nmin = d.getMinutes();
-        var nsec = d.getSeconds();
-        var ap;
-
-        if (nyear < 1000) {
-          nyear += 1900;
-        }
-
-        if (nhour == 0) {
-          ap = " AM";
-          nhour = 12;
-        } else if (nhour < 12) {
-          ap = " AM";
-        } else if (nhour == 12) {
-          ap = " PM";
-        } else if (nhour > 12) {
-          ap = " PM";
-          nhour -= 12;
-        }
-
-        if (nmin <= 9) {
-          nmin = "0" + nmin;
-        }
-        if (nsec <= 9) {
-          nsec = "0" + nsec;
-        }
-
-        document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+ap+"";
-      }
-
-      window.onload = function () {
-        getClock();
-        setInterval(getClock, 1000);
-      }
-    </script>
-
-    <script>
-      function getTimes() {
-        $.ajax({
-          type: 'GET',
-          url: 'https://api.tfl.gov.uk/StopPoint/940GZZLUNFD/Arrivals?app_key=%20a73f7a36fab42a930bf7cf8b1616d995&app_id=be29441e',
-          dataType: 'Json',
-          success: function (data) {
-            $("#board").html("");
-            var sorted = data.sort(function (a, b) {
-              if (a.timeToStation > b.timeToStation) {
-                return 1;
-              }
-              if (a.timeToStation < b.timeToStation) {
-                return -1;
-              }
-
-              return 0;
-            });
-
-            $.each(data, function (key, value) {
-              var line = value.lineName;
-              var stop_name = value.stationName;
-              var destination = value.destinationName;
-              var platform_Name = value.platformName;
-              var time = value.timeToStation;
-              time = parseInt (time/60);
-              time < 1 ? time = "due" : time = time+ "min";
-              $("#board").append(line + " " + stop_name + "<br>" + destination + "<br>" + platform_Name + " " + time + "<br>");
-            });
-          }
-        });
-      }
-    </script>
 </body>
 </html>
