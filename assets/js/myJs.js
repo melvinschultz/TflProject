@@ -1,7 +1,8 @@
-function getTimes() {
+// function getTimes
+function getTimes(codeStation) {
   $.ajax({
     type: 'GET',
-    url: 'https://api.tfl.gov.uk/StopPoint/940GZZLUNFD/Arrivals?app_key=%20a73f7a36fab42a930bf7cf8b1616d995&app_id=be29441e',
+    url: 'https://api.tfl.gov.uk/StopPoint/' + codeStation + '/Arrivals?app_key=%20a73f7a36fab42a930bf7cf8b1616d995&app_id=be29441e',
     dataType: 'Json',
     success: function (data) {
       $("#board").html("");
@@ -32,7 +33,10 @@ function getTimes() {
     }
   });
 }
+// END function getTimes
 
+
+// function getClock
 function getClock() {
   var date = new Date();
 
@@ -49,8 +53,12 @@ function getClock() {
 
   document.getElementById('clockbox').innerHTML = dateFormatted;
 }
+// END function getClock
 
+
+// window.onload
 window.onload = function () {
   getClock();
   setInterval(getClock, 60000);
 }
+// END window.onload
